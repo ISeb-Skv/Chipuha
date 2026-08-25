@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1787610069977_xoe4ri",
+    "username": "Sebas",
+    "text": "ывс",
+    "time": "01:21",
+    "isFile": false,
+    "isSystem": false,
+    "quoted": null,
+    "quoteId": null
+  },
+  {
+    "id": "f69aa5ae-2899-4f95-bd08-9315140db037",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/20aabd70-eee5-4b70-8229-da3d77866043.webm",
+    "time": "01:21",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:01"
+  },
+  {
+    "id": "a6708397-22fb-4778-86ec-a2b747c78154",
+    "username": "Sebas",
+    "filename": "Res_Skvortsov.jpg",
+    "fileUrl": "/uploads/5d860e74-9949-4f1d-8591-62bd6864e116.jpg",
+    "time": "01:21",
+    "isFile": true,
+    "isAudio": false,
+    "isImage": true,
+    "isSystem": false,
+    "duration": "0:00"
+  },
+  {
+    "id": "68196e78-b780-41cb-b44b-2071e20e6d92",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/224fced6-dd81-4c3f-a2ae-3b72a17f8932.webm",
+    "time": "01:31",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:01"
+  },
+  {
+    "id": "1787668099235_h9bzrs",
+    "username": "Sebas",
+    "text": "паиап",
+    "time": "17:28",
+    "isFile": false,
+    "isSystem": false,
+    "quoted": null,
+    "quoteId": null
+  },
+  {
+    "id": "9edb21f6-246e-4ac2-b19b-f7e796ed7f54",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/355796fe-7924-4d78-9bfb-44630272495a.webm",
+    "time": "18:17",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:00"
+  },
+  {
+    "id": "cd67b2b2-c4e3-4b41-926d-c9895196c572",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/e9190292-7af1-4256-9f55-0d87904180ab.webm",
+    "time": "18:17",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:02"
+  },
+  {
+    "id": "ffe62175-afba-4a75-86e4-4b53f6f6073a",
+    "username": "Sebas",
+    "filename": "Res_Skvortsov.jpg",
+    "fileUrl": "/uploads/50d5cc81-b05d-40e1-b4a4-26e968a87edb.jpg",
+    "time": "18:18",
+    "isFile": true,
+    "isAudio": false,
+    "isImage": true,
+    "isSystem": false,
+    "duration": "0:00"
+  },
+  {
+    "id": "f1736b66-298f-4712-bca5-fb30a9a6efd1",
+    "username": "Sebas",
+    "filename": "right.gif",
+    "fileUrl": "/uploads/7847e8a6-ba1e-420e-925e-cf7834332853.gif",
+    "time": "18:47",
+    "isFile": true,
+    "isAudio": false,
+    "isImage": true,
+    "isSystem": false,
+    "duration": "0:00"
+  },
+  {
+    "id": "75922ceb-9913-4f92-b7ca-3077652a3d01",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/5c16d1db-c89c-4618-9662-aa1d31fa6158.webm",
+    "time": "19:18",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:01"
+  },
+  {
+    "id": "04271238-a4dd-49cf-8d6b-4cc24f934655",
+    "username": "Sebas",
+    "filename": "voice_message.webm",
+    "fileUrl": "/uploads/7a8be093-ccb0-4228-a062-7f28579a6004.webm",
+    "time": "19:22",
+    "isFile": true,
+    "isAudio": true,
+    "isImage": false,
+    "isSystem": false,
+    "duration": "0:01"
+  },
+  {
+    "id": "6b8a7878-5016-421a-b6bf-84833916da8f",
+    "username": "Sebas",
+    "filename": "left.gif",
+    "fileUrl": "/uploads/e28f2594-435b-42b7-82c0-256a4fea4751.gif",
+    "time": "19:24",
+    "isFile": true,
+    "isAudio": false,
+    "isImage": true,
+    "isSystem": false,
+    "duration": "0:00"
+  }
+]

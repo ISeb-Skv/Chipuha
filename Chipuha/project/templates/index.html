@@ -1,0 +1,104 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Чипуха{% endblock %}
+
+{% block content %}
+<div class="main-container" id="app">
+    <!-- Чат-контейнер -->
+    <div class="chat-container" id="chatContainer">
+        <div class="header">
+            <div class="header-left">
+                <h1>🔥 Чипуха</h1>
+                <div class="global-volume">
+                    <span style="font-size:0.8rem; color:#aaa;">🔊</span>
+                    <input type="range" id="globalVolumeSlider" min="0" max="100" value="100">
+                    <span class="volume-label" id="globalVolumeLabel">100%</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <span id="currentUserDisplay">{{ username }}</span>
+                    <div class="nick-form">
+                        <input type="text" id="newNickInput" placeholder="Новый ник">
+                        <button id="changeNickBtn">Сменить</button>
+                    </div>
+                    <button id="soundToggleBtn" class="sound-btn" title="Вкл/Выкл уведомления">🔔</button>
+                    <a href="{{ url_for('auth.logout') }}" class="logout-btn" style="text-decoration:none; padding:5px 12px; border-radius:15px; background:#444; color:#fff;">Выйти</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="messages-wrapper" id="messagesWrapper">
+            <div class="loader" id="loadMoreBtn">⬆ Загрузить предыдущие сообщения</div>
+            <div id="messagesContainer"></div>
+        </div>
+
+        <div id="uploadProgress">
+            <div class="file-info">
+                <span id="uploadFileName">Файл</span>
+                <span id="uploadPercent">0%</span>
+            </div>
+            <progress id="uploadProgressBar" value="0" max="100"></progress>
+        </div>
+
+        <div class="input-area">
+            <div class="reply-quote" id="replyQuote">
+                <span class="quote-text" id="quoteText">Ответ на сообщение</span>
+                <button class="quote-close" id="quoteClose">✕</button>
+            </div>
+            <div class="input-row">
+                <textarea id="messageInput" rows="1" placeholder="Введите сообщение..."></textarea>
+                <button class="action-btn voice-record-btn" id="voiceRecordBtn" title="Записать голосовое сообщение">🎤</button>
+                <div class="file-upload-wrapper">
+                    <button class="action-btn file-upload-btn" id="fileUploadBtn" title="Прикрепить файл">📎</button>
+                    <input type="file" id="fileInput">
+                </div>
+                <button class="action-btn send-btn" id="sendBtn" title="Отправить">➤</button>
+                <button class="action-btn" id="videoRoomToggle" title="Видео комната" style="background:#ff4444;color:white;border:none;border-radius:50%;width:46px;height:46px;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;">🎬</button>
+            </div>
+            <div id="tempAudioContainer" style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;"></div>
+        </div>
+    </div>
+
+    <!-- Сайдбар -->
+    <div class="sidebar">
+        <h3>👥 Онлайн</h3>
+        <ul class="online-users" id="onlineUsers"></ul>
+        <div class="voice-room">
+            <div class="voice-title">🔊 Голосовой канал</div>
+            <ul class="voice-participants" id="voiceParticipants"></ul>
+            <div class="voice-controls" id="voiceControls">
+                <button id="voiceToggleBtn" class="voice-toggle-btn">Войти</button>
+                <div class="self-controls" id="selfControls">
+                    <button id="micControlBtn" class="mic-btn active" title="Вкл/Выкл микрофон">🎤</button>
+                    <button id="headphonesControlBtn" class="headphones-btn active" title="Вкл/Выкл звук">🎧</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Модалки -->
+<div class="modal" id="nickHistoryModal">
+    <div class="modal-content">
+        <h2 id="historyModalTitle">История ников</h2>
+        <ul id="historyList"></ul>
+        <button class="close-btn" id="closeHistoryModal">Закрыть</button>
+    </div>
+</div>
+<div class="modal volume-modal" id="volumeModal">
+    <div class="modal-content">
+        <h2 id="volumeModalTitle">Громкость</h2>
+        <div class="volume-slider-container">
+            <div class="volume-label" id="volumeLabel">100%</div>
+            <input type="range" id="volumeSlider" min="0" max="100" value="100">
+        </div>
+        <button class="close-btn" id="closeVolumeModal">Закрыть</button>
+    </div>
+</div>
+<div class="context-menu" id="contextMenu">
+    <div class="menu-item" data-action="reply">↩ Ответить</div>
+    <div class="menu-item" data-action="delete-all" style="display:none;">🗑 Удалить для всех</div>
+    <div class="menu-item" data-action="delete-self" style="display:none;">🙈 Удалить для себя</div>
+</div>
+{% endblock %}

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Чипуха — Регистрация</title>
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .auth-container {
+            background-color: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #ff8c00;
+            box-shadow: 0 0 30px rgba(255, 140, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+            .auth-container h1 {
+                color: #ff8c00;
+                text-align: center;
+                font-weight: 300;
+                letter-spacing: 2px;
+                margin-bottom: 25px;
+            }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+            .form-group label {
+                display: block;
+                color: #aaa;
+                font-size: 0.9rem;
+                margin-bottom: 4px;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 12px 15px;
+                background-color: #222;
+                border: 1px solid #444;
+                border-radius: 25px;
+                color: #fff;
+                font-size: 1rem;
+                outline: none;
+                transition: border-color 0.3s, box-shadow 0.3s;
+                box-sizing: border-box;
+            }
+
+                .form-group input:focus {
+                    border-color: #ff8c00;
+                    box-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+                }
+
+                .form-group input.error {
+                    border-color: #d9534f;
+                    box-shadow: 0 0 10px rgba(217, 83, 79, 0.3);
+                }
+
+            .form-group .error-text {
+                color: #d9534f;
+                font-size: 0.85rem;
+                font-style: italic;
+                margin-top: 5px;
+                display: none;
+            }
+
+                .form-group .error-text.visible {
+                    display: block;
+                }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #ff8c00;
+            color: #000;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+            button:hover {
+                background-color: #ffa500;
+            }
+
+            button:active {
+                transform: scale(0.97);
+            }
+
+        .link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.95rem;
+        }
+
+            .link a {
+                color: #ff8c00;
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+
+                .link a:hover {
+                    color: #ffa500;
+                    text-decoration: underline;
+                }
+
+        .global-error {
+            color: #d9534f;
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+            .global-error.visible {
+                display: block;
+            }
+
+        @media (max-width: 480px) {
+            .auth-container {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <h1>📝 Чипуха</h1>
+        <form id="registerForm" method="POST" action="{{ url_for('auth.register') }}">
+            <div class="form-group">
+                <label for="username">Придумайте имя</label>
+                <input type="text" id="username" name="username" placeholder="Введите имя" required>
+                <div class="error-text" id="usernameError">Данный никнейм уже занят</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" name="password" placeholder="Введите пароль" required>
+                <div class="error-text" id="passwordError">Минимум 4 символа</div>
+            </div>
+            <button type="submit">Зарегистрироваться</button>
+            <div class="global-error" id="globalError">Ошибка соединения с сервером</div>
+        </form>
+        <div class="link">
+            Уже есть аккаунт? <a href="{{ url_for('auth.login') }}">Войдите</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const usernameError = document.getElementById('usernameError');
+        const passwordError = document.getElementById('passwordError');
+        const globalError = document.getElementById('globalError');
+
+        usernameInput.addEventListener('input', () => {
+            usernameInput.classList.remove('error');
+            usernameError.classList.remove('visible');
+            globalError.classList.remove('visible');
+        });
+        passwordInput.addEventListener('input', () => {
+            passwordInput.classList.remove('error');
+            passwordError.classList.remove('visible');
+            globalError.classList.remove('visible');
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            usernameInput.classList.remove('error');
+            passwordInput.classList.remove('error');
+            usernameError.classList.remove('visible');
+            passwordError.classList.remove('visible');
+            globalError.classList.remove('visible');
+
+            const formData = new FormData(form);
+            const data = new URLSearchParams(formData);
+
+            try {
+                const response = await fetch('{{ url_for("auth.register") }}', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: data
+                });
+                const result = await response.json();
+
+                if (result.success) {
+                    window.location.href = '{{ url_for("auth.login") }}';
+                } else {
+                    if (result.error && result.error.includes('никнейм')) {
+                        usernameInput.classList.add('error');
+                        usernameError.textContent = result.error;
+                        usernameError.classList.add('visible');
+                    } else {
+                        passwordInput.classList.add('error');
+                        passwordError.textContent = result.error || 'Ошибка регистрации';
+                        passwordError.classList.add('visible');
+                    }
+                }
+            } catch (err) {
+                usernameInput.classList.add('error');
+                passwordInput.classList.add('error');
+                usernameError.textContent = 'Ошибка соединения';
+                passwordError.textContent = 'Ошибка соединения';
+                usernameError.classList.add('visible');
+                passwordError.classList.add('visible');
+                globalError.textContent = 'Ошибка соединения с сервером';
+                globalError.classList.add('visible');
+            }
+        });
+    </script>
+</body>
+</html>
